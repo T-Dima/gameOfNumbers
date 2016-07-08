@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var prize = 0;
+function showMessageOnFail(){
+    alert("сегодня вы не выиграли миллион, а могли! Ваш выигрыш " + prize + "$"); //функция алерта
+
+}
+    function showMessageOnFail2(){
+        alert("на сегодня Ваш выигрыш составил " + prize + "$ Возвращайтесь!");
+    }
+    var mainOfGame = function (){ //функция всего скрипта
+        if(confirm("начать игру?")) { // спрашиваем начать игру
+            var x = Math.random(); // присваиваем Х рандомной функции
+            x = Math.round(x * 5); // так как функция возвращает от 0 до 5 умножаем ее на 5
+            console.log(x); //показываем рандомное число, чтобы првоерить
+            var giveNumber = 1; // даем переменной начальное число отсчета
+            var numberOfUser = parseInt(prompt("введите число", "")); // просим ввести число и парсим его со строки в число
+            while (giveNumber < 3) { // чикл для отчет колличества попыток( 3 попытки)
+                if (!numberOfUser) // если Х не равно введенному
+                    history.go(-1);//отнимаем оирацию на -1
+                if (numberOfUser == x) { // если равно вылетаем из цикла
+                    break;
+                }
+                giveNumber += 1; // инкремент, чтобы не зациклился цикл
+                numberOfUser = parseInt(prompt("неправильно", "")); // если не правильно указал цифру показываем сообщение и просим еще раз ввести
+            }
+            var isWin = giveNumber == x;
+            if(isWin){
+                switch (giveNumber){
+                    case 1: prize += 10;break;
+                    case 2: prize += 5;break;
+                    case 3: prize += 2;break;
+                }
+            }
+//            if (numberOfUser == x & giveNumber == 1) { //првоеряем если если с первого раза угадал
+//                prize += 10; //если с первого раза то 10
+//            }
+//            if (numberOfUser == x & giveNumber == 2) {//првоеряем если если со второго раза угадал
+//                prize += 5; //если со второго раза то 5
+//            }
+//            if (numberOfUser == x & giveNumber == 3) {//првоеряем если если со третьего раза угадал
+//                prize += 2;//если с третьего раза то 2
+//            }
+            if(confirm ("вы выиграли "+prize +"$" + " пробоватьеще раз?")){ // когда угадал цифру, показываем что выиграл и спрашиваем еще раз
+                prize *= 3;
+                mainOfGame(); // если да то вызываем еще раз функцию в начало
+                //prize = prize * 3; // умножаем выигрыш на 3
+            }
+            else showMessageOnFail2();//если не хочет играть то функцию АЛЕР
+        }
+        else showMessageOnFail();// если сразу в начале игры не хочет играть то показываем  функцию АЛЕР
+    };
+    mainOfGame();//запуск всей программы.
+
+</script>
+</body>
+</html>
