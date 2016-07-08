@@ -20,7 +20,7 @@ function showMessageOnFail(){
             x = Math.round(x * 5); // так как функция возвращает от 0 до 5 умножаем ее на 5
             console.log(x); //показываем рандомное число, чтобы првоерить
             var giveNumber = 1; // даем переменной начальное число отсчета
-            var numberOfUser = parseInt(prompt("введите число", "")); // просим ввести число и парсим его со строки в число
+            var numberOfUser = parseInt(prompt("введите число от 0 до 5", "")); // просим ввести число и парсим его со строки в число
             while (giveNumber < 3) { // чикл для отчет колличества попыток( 3 попытки)
                 if (!numberOfUser) // если Х не равно введенному
                     history.go(-1);//отнимаем оирацию на -1
@@ -28,7 +28,7 @@ function showMessageOnFail(){
                     break;
                 }
                 giveNumber += 1; // инкремент, чтобы не зациклился цикл
-                numberOfUser = parseInt(prompt("неправильно", "")); // если не правильно указал цифру показываем сообщение и просим еще раз ввести
+                numberOfUser = parseInt(prompt("неправильно,  укажите еще раз", "")); // если не правильно указал цифру показываем сообщение и просим еще раз ввести
             }
             var isWin = numberOfUser == x;
             if(isWin){
@@ -37,11 +37,11 @@ function showMessageOnFail(){
                     case 2: prize += 5; break;
                     case 3: prize += 2; break;
                 }
-            }
+            }else alert("попытки закончились");
             if(confirm ("вы выиграли "+prize +"$" + " пробоватьеще раз?")){ // когда угадал цифру, показываем что выиграл и спрашиваем еще раз
                 prize *= 3;
                 mainOfGame(); // если да то вызываем еще раз функцию в начало
-                //prize = prize * 3; // умножаем выигрыш на 3
+                prize = prize * 3; // умножаем выигрыш на 3
             }
             else showMessageOnFail2();//если не хочет играть то функцию АЛЕР
         }
