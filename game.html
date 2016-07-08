@@ -30,7 +30,7 @@ function showMessageOnFail(){
                 giveNumber += 1; // инкремент, чтобы не зациклился цикл
                 numberOfUser = parseInt(prompt("неправильно", "")); // если не правильно указал цифру показываем сообщение и просим еще раз ввести
             }
-            var isWin = giveNumber == x;
+            var isWin = numberOfUser == x;
             if(isWin){
                 switch (giveNumber){
                     case 1: prize += 10; break;
